@@ -1,0 +1,52 @@
+{
+  "word": [
+    {
+      "version": 1,
+      "timestamp": "2026-04-22T17:20:03.509744",
+      "file_path": "uploaded_docs\\word_2026-04-22T17-20-03.509744.docx",
+      "filename": "random_paragraph.docx"
+    }
+  ],
+  "work": [
+    {
+      "version": 1,
+      "timestamp": "2026-04-22T17:20:19.901586",
+      "file_path": "uploaded_docs\\work_2026-04-22T17-20-19.901586.docx",
+      "filename": "contradictory_paragraph.docx"
+    },
+    {
+      "version": 2,
+      "timestamp": "2026-04-22T17:20:39.112482",
+      "file_path": "uploaded_docs\\work_2026-04-22T17-20-39.112482.docx",
+      "filename": "random_paragraph.docx"
+    }
+  ],
+  "meeting": [
+    {
+      "version": 1,
+      "timestamp": "2026-05-03T20:39:18.546265",
+      "file_path": "uploaded_docs\\meeting_2026-05-03T20-39-18.546265.docx",
+      "filename": "random_paragraph.docx"
+    },
+    {
+      "version": 2,
+      "timestamp": "2026-05-03T20:39:32.764163",
+      "file_path": "uploaded_docs\\meeting_2026-05-03T20-39-32.764163.docx",
+      "filename": "contradictory_paragraph.docx"
+    }
+  ],
+  "policy": [
+    {
+      "version": 1,
+      "timestamp": "2026-05-04T09:23:36.195919",
+      "file_path": "uploaded_docs\\policy_2026-05-04T09-23-36.195919.docx",
+      "filename": "random_paragraph.docx"
+    },
+    {
+      "version": 2,
+      "timestamp": "2026-05-04T09:23:55.586804",
+      "file_path": "uploaded_docs\\policy_2026-05-04T09-23-55.586804.docx",
+      "filename": "contradictory_paragraph.docx"
+    }
+  ]
+}

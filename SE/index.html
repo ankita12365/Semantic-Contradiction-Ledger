@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Contradiction Ledger</title>
+    <link rel="stylesheet" href="/static/style.css?v=2">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" style="display: none;">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🔗</span>
+                <span class="logo-text">Semantic Ledger</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="analyze">Analyze</a>
+                <a href="#" class="nav-link" data-page="compare">Compare Docs</a>
+                <a href="#" class="nav-link" data-page="documents">Documents</a>
+                <a href="#" class="nav-link" data-page="blockchain">Blockchain</a>
+                <div class="auth-buttons">
+                    <a href="#" class="nav-link" data-page="login" id="loginLink">Sign in</a>
+                    <button class="btn-auth" onclick="navigateTo('signup')">Get started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page: Welcome -->
+    <div id="welcome-page" class="page active">
+        <div class="welcome-container">
+            <div class="welcome-content">
+                <div class="welcome-badge">● LIVE FORENSIC ENGINE • V1.0</div>
+                <h1 class="welcome-title">
+                    Every document <span class="highlight">tells two stories.</span><br>
+                    We surface the second one.
+                </h1>
+                <p class="welcome-subtitle">
+                    Upload any PDF — contracts, research, reports, transcripts. The Semantic<br>
+                    Contradiction Ledger catalogs every internal conflict: numeric mismatches, broken<br>
+                    logic, conflicting claims, and timelines that don't add up.
+                </p>
+                <div class="welcome-buttons">
+                    <button class="btn-welcome-primary" id="getStartedBtn" onclick="navigateTo('signup')">🚀 Get Started</button>
+                    <button class="btn-welcome-secondary" id="signInBtn" onclick="navigateTo('login')">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Home -->
+    <div id="home-page" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <div style="color: var(--primary); font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem;">● LIVE FORENSIC ENGINE • V1.0</div>
+                <h1 class="hero-title">
+                    Every document <span class="highlight">tells two stories.</span><br>
+                    We surface the second one.
+                </h1>
+                <p class="hero-subtitle">Upload any PDF — contracts, research, reports, transcripts. The Semantic<br>Contradiction Ledger catalogs every internal conflict: numeric mismatches, broken<br>logic, conflicting claims, and timelines that don't add up.</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalBlocks">0</div>
+                        <div class="stat-label">Total Blocks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalAnalyses">0</div>
+                        <div class="stat-label">Analyses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalDocs">0</div>
+                        <div class="stat-label">Documents</div>
+                    </div>
+                </div>
+                <button class="btn-hero" onclick="navigateTo('analyze')">🔍 Begin Analysis</button>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card" onclick="loadExample('semantic')">
+                <div class="feature-icon">💬</div>
+                <h3>Semantic</h3>
+                <p>Meanings that collide.</p>
+                <div style="margin-top: 1rem; color: var(--gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">TRY EXAMPLE →</div>
+            </div>
+            <div class="feature-card" onclick="loadExample('logical')">
+                <div class="feature-icon">🔗</div>
+                <h3>Logical</h3>
+                <p>Implications that break.</p>
+                <div style="margin-top: 1rem; color: var(--gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">TRY EXAMPLE →</div>
+            </div>
+            <div class="feature-card" onclick="loadExample('numeric')">
+                <div class="feature-icon">Σ</div>
+                <h3>Numeric</h3>
+                <p>Figures that disagree.</p>
+                <div style="margin-top: 1rem; color: var(--gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">TRY EXAMPLE →</div>
+            </div>
+            <div class="feature-card" onclick="loadExample('temporal')">
+                <div class="feature-icon">🕐</div>
+                <h3>Temporal</h3>
+                <p>Dates that won't reconcile.</p>
+                <div style="margin-top: 1rem; color: var(--gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">TRY EXAMPLE →</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Analyze -->
+    <div id="analyze-page" class="page">
+        <div class="container">
+            <h1 class="page-title">Contradiction Analysis</h1>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="text">Text Analysis</button>
+                <button class="tab-btn" data-tab="document">Document Comparison</button>
+            </div>
+
+            <!-- Text Analysis Tab -->
+            <div id="text-tab" class="tab-content active">
+                <div class="analysis-grid">
+                    <div class="input-card">
+                        <label class="input-label">Statement A</label>
+                        <textarea id="statementA" class="input-textarea" placeholder="Enter first statement..."></textarea>
+                    </div>
+                    
+                    <div class="input-card">
+                        <label class="input-label">Statement B</label>
+                        <textarea id="statementB" class="input-textarea" placeholder="Enter second statement..."></textarea>
+                    </div>
+                </div>
+                
+                <button id="analyzeBtn" class="btn-primary">
+                    <span class="btn-icon">🔍</span>
+                    Analyze Contradiction
+                </button>
+            </div>
+
+            <!-- Document Comparison Tab -->
+            <div id="document-tab" class="tab-content">
+                <div class="analysis-grid">
+                    <div class="upload-card">
+                        <label class="input-label">Document A</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="fileA" accept=".pdf,.docx,.doc,.txt">
+                            <label for="fileA" class="file-label">
+                                <span class="file-icon">📎</span>
+                                <span id="fileAName">Choose file (PDF, DOCX, TXT)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-card">
+                        <label class="input-label">Document B</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="fileB" accept=".pdf,.docx,.doc,.txt">
+                            <label for="fileB" class="file-label">
+                                <span class="file-icon">📎</span>
+                                <span id="fileBName">Choose file (PDF, DOCX, TXT)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="analyzeDocsBtn" class="btn-primary">
+                    <span class="btn-icon">📄</span>
+                    Compare Documents
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultSection" class="result-section" style="display: none;">
+                <h2 class="section-title">Analysis Results</h2>
+                
+                <div class="result-grid">
+                    <div class="result-card-main">
+                        <div class="result-header">
+                            <span id="contradictionBadge" class="badge"></span>
+                            <span id="relationshipType" class="relationship-type"></span>
+                        </div>
+                        <div class="result-confidence">
+                            <div class="confidence-label">Confidence Score</div>
+                            <div class="confidence-bar">
+                                <div id="confidenceBar" class="confidence-fill"></div>
+                            </div>
+                            <div id="confidenceValue" class="confidence-value"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-card-secondary">
+                        <div class="metric">
+                            <span class="metric-label">Semantic Similarity</span>
+                            <span id="semanticSimilarity" class="metric-value"></span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Block Hash</span>
+                            <span id="blockHash" class="metric-value hash-short"></span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Chain Status</span>
+                            <span id="chainValid" class="metric-value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>📊 Detailed Explanation</h3>
+                    <p id="explanationText" class="explanation-text"></p>
+                </div>
+
+                <div id="wordDiffCard" class="word-diff-card" style="display: none;">
+                    <h3>🔍 What Changed?</h3>
+                    <div id="wordDiffContent" class="word-diff-content"></div>
+                </div>
+
+                <div id="changesCard" class="changes-card" style="display: none;">
+                    <h3>📝 Document Changes</h3>
+                    <div class="changes-grid">
+                        <div class="change-stat">
+                            <span class="change-number" id="totalChanges">0</span>
+                            <span class="change-label">Total Changes</span>
+                        </div>
+                        <div class="change-stat additions">
+                            <span class="change-number" id="additions">0</span>
+                            <span class="change-label">Additions</span>
+                        </div>
+                        <div class="change-stat deletions">
+                            <span class="change-number" id="deletions">0</span>
+                            <span class="change-label">Deletions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Documents -->
+    <div id="documents-page" class="page">
+        <div class="container">
+            <h1 class="page-title">Version Tracking</h1>
+            
+            <div class="upload-section">
+                <div class="input-card">
+                    <label class="input-label">Document Name</label>
+                    <input type="text" id="docName" class="input-text" placeholder="e.g., Contract, Policy, Agreement">
+                </div>
+                
+                <div class="upload-card">
+                    <label class="input-label">Upload Document Version</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="versionFile" accept=".pdf,.docx,.doc,.txt">
+                        <label for="versionFile" class="file-label">
+                            <span class="file-icon">📎</span>
+                            <span id="versionFileName">Choose file (PDF, DOCX, TXT)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button id="uploadVersionBtn" class="btn-primary">
+                    <span class="btn-icon">⬆️</span>
+                    Upload Version
+                </button>
+            </div>
+
+            <!-- Version Upload Results -->
+            <div id="versionResultSection" class="result-section" style="display: none;">
+                <h2 class="section-title">Version Analysis Results</h2>
+                
+                <div class="result-grid">
+                    <div class="result-card-main">
+                        <div class="result-header">
+                            <span id="versionBadge" class="badge"></span>
+                            <span id="versionNumber" class="relationship-type"></span>
+                        </div>
+                        <div class="result-confidence">
+                            <div class="confidence-label">Confidence Score</div>
+                            <div class="confidence-bar">
+                                <div id="versionConfidenceBar" class="confidence-fill"></div>
+                            </div>
+                            <div id="versionConfidenceValue" class="confidence-value"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-card-secondary">
+                        <div class="metric">
+                            <span class="metric-label">Document Name</span>
+                            <span id="versionDocName" class="metric-value"></span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Version</span>
+                            <span id="versionNum" class="metric-value"></span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Total Changes</span>
+                            <span id="versionChanges" class="metric-value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="versionChangesCard" class="changes-card">
+                    <h3>📝 Version Changes</h3>
+                    <div class="changes-grid">
+                        <div class="change-stat">
+                            <span class="change-number" id="versionTotalChanges">0</span>
+                            <span class="change-label">Total Changes</span>
+                        </div>
+                        <div class="change-stat additions">
+                            <span class="change-number" id="versionAdditions">0</span>
+                            <span class="change-label">Additions</span>
+                        </div>
+                        <div class="change-stat deletions">
+                            <span class="change-number" id="versionDeletions">0</span>
+                            <span class="change-label">Deletions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="versionDiffCard" class="word-diff-card" style="display: none;">
+                    <h3>🔍 What Changed Between Versions?</h3>
+                    <div id="versionDiffContent" class="word-diff-content"></div>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>📊 Version Comparison</h3>
+                    <p id="versionExplanation" class="explanation-text"></p>
+                </div>
+            </div>
+
+            <div class="documents-list">
+                <h2 class="section-title">Tracked Documents</h2>
+                <div id="documentsList" class="docs-grid"></div>
+            </div>
+
+            <!-- Document History Modal -->
+            <div id="documentHistoryModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="historyDocName">Document History</h2>
+                        <button class="modal-close" onclick="closeDocumentHistory()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="documentHistoryContent"></div>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn-delete" onclick="deleteEntireDocument()">
+                            🗑️ Delete Entire Document
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Blockchain -->
+    <div id="blockchain-page" class="page">
+        <div class="container">
+            <div class="blockchain-header">
+                <h1 class="page-title">Blockchain History</h1>
+                <div style="display: flex; gap: 1rem;">
+                    <button id="refreshBtn" class="btn-secondary">
+                        <span class="btn-icon">🔄</span>
+                        Refresh
+                    </button>
+                    <button id="clearBlockchainBtn" class="btn-delete">
+                        <span class="btn-icon">🗑️</span>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+            <div id="blockchainContainer" class="blockchain-container"></div>
+            
+            <!-- Block Detail Modal -->
+            <div id="blockDetailModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="blockDetailTitle">Block Details</h2>
+                        <button class="modal-close" onclick="closeBlockDetail()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="blockDetailContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Compare Docs -->
+    <div id="compare-page" class="page">
+        <div class="container">
+            <h1 class="page-title">Compare Documents</h1>
+            <p style="color: var(--gray); margin-bottom: 2rem;">Upload two documents (PDF, DOCX, TXT) and get a full contradiction and change report.</p>
+
+            <div class="analysis-grid">
+                <div class="upload-card">
+                    <label class="input-label">Document A</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="compareFileA" accept=".pdf,.docx,.doc,.txt">
+                        <label for="compareFileA" class="file-label">
+                            <span class="file-icon">📎</span>
+                            <span id="compareFileAName">Choose file (PDF, DOCX, TXT)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="upload-card">
+                    <label class="input-label">Document B</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="compareFileB" accept=".pdf,.docx,.doc,.txt">
+                        <label for="compareFileB" class="file-label">
+                            <span class="file-icon">📎</span>
+                            <span id="compareFileBName">Choose file (PDF, DOCX, TXT)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button id="compareDocsBtn" class="btn-primary">
+                <span class="btn-icon">📊</span>
+                Generate Report
+            </button>
+
+            <!-- Compare Results -->
+            <div id="compareResultSection" class="result-section" style="display: none;">
+                <h2 class="section-title">Comparison Report</h2>
+
+                <div class="result-grid">
+                    <div class="result-card-main">
+                        <div class="result-header">
+                            <span id="compareBadge" class="badge"></span>
+                            <span id="compareRelationship" class="relationship-type"></span>
+                        </div>
+                        <div class="result-confidence">
+                            <div class="confidence-label">Confidence Score</div>
+                            <div class="confidence-bar">
+                                <div id="compareConfidenceBar" class="confidence-fill"></div>
+                            </div>
+                            <div id="compareConfidenceValue" class="confidence-value"></div>
+                        </div>
+                    </div>
+                    <div class="result-card-secondary">
+                        <div class="metric">
+                            <span class="metric-label">Semantic Similarity</span>
+                            <span id="compareSemanticSimilarity" class="metric-value"></span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Total Changes</span>
+                            <span id="compareTotalChanges" class="metric-value"></span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Block Hash</span>
+                            <span id="compareBlockHash" class="metric-value hash-short"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>📊 Analysis</h3>
+                    <p id="compareExplanation" class="explanation-text"></p>
+                </div>
+
+                <div id="compareChangesCard" class="changes-card">
+                    <h3>📝 Document Changes</h3>
+                    <div class="changes-grid">
+                        <div class="change-stat">
+                            <span class="change-number" id="compareChangesTotal">0</span>
+                            <span class="change-label">Total Changes</span>
+                        </div>
+                        <div class="change-stat additions">
+                            <span class="change-number" id="compareChangesAdded">0</span>
+                            <span class="change-label">Additions</span>
+                        </div>
+                        <div class="change-stat deletions">
+                            <span class="change-number" id="compareChangesDeleted">0</span>
+                            <span class="change-label">Deletions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="compareDiffCard" class="word-diff-card" style="display: none;">
+                    <h3>🔍 What Changed?</h3>
+                    <div id="compareDiffContent" class="word-diff-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Login -->
+    <div id="login-page" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to access your contradiction ledger</p>
+                </div>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Sign In</button>
+                </form>
+                <div class="auth-footer">
+                    Don't have an account? <a href="#" onclick="navigateTo('signup'); return false;">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Signup -->
+    <div id="signup-page" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2>Create Account</h2>
+                    <p>Start detecting contradictions with blockchain transparency</p>
+                </div>
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="signupName" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signupPassword" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-footer">
+                    Already have an account? <a href="#" onclick="navigateTo('login'); return false;">Sign in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js?v=2"></script>
+</body>
+</html>
